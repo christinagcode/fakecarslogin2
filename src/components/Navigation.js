@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AppBar, Toolbar, IconButton, Typography } from "@mui/material";
 import cookie from "cookie";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const Navigation = () => {
+const Navigation = (props) => {
+  const {loggedIn, setLoggedIn} = props
   const navigate = useNavigate();
+
 
   return (
     <AppBar position="relative">
@@ -23,17 +25,31 @@ const Navigation = () => {
           <li className="nav-list-item">
             <Link to="/about">About</Link>
           </li>
-          <li
+          {loggedIn ? (
+              <li
+              className="nav-list-item"
+              onClick={() => {
+                document.cookie = cookie.serialize("isLoggedIn", null, {
+                  maxAge: 0,
+                });
+                setLoggedIn(false)
+                navigate("/login");
+              }}
+            >
+              Logout
+            </li>
+          ) : (
+            <li
             className="nav-list-item"
             onClick={() => {
-              document.cookie = cookie.serialize("loggedIn", null, {
-                maxAge: 0,
-              });
-              navigate("/login");
+            
             }}
           >
-            Logout
+            Login
           </li>
+          )}
+
+        
         </ul>
       </Toolbar>
     </AppBar>
