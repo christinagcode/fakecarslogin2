@@ -42,7 +42,7 @@ const Navigation = (props) => {
             <li
             className="nav-list-item"
             onClick={() => {
-            
+              navigate("/login")
             }}
           >
             Login

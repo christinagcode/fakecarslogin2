@@ -27,7 +27,7 @@ console.log(rest)
 const Router = ({loggedIn, setLoggedIn}) => {
     return (
         <Routes>
-            <Route path="/" element={<ProtectedRoute component={Home}/>} />
+            <Route path="/" element={<ProtectedRoute component={Home} />} />
             <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
             <Route path="/about" element={<ProtectedRoute component={About} />} />
             <Route path="/car/:id" element={<ProtectedRoute component={Car} />} />
